@@ -21,5 +21,10 @@ def predictions_and_offensiveness():
         'tokens': [token.replace('Ġ', '') for token in generated['tokens']]}
     return jsonify(return_dict)
 
+@app.route('/', methods=['GET'])
+def verify_online():
+    """Returns json to verify server is working"""
+    return jsonify({"success": True})
+
 if __name__ == '__main__':
     app.run()
