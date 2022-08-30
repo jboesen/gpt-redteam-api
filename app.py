@@ -1,5 +1,6 @@
 """Contains all API methods"""
 import os
+import tracemalloc
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from generate_text import get_aggregated_completions
@@ -7,6 +8,8 @@ from offensive_classifier import sort_offensive
 
 app = Flask(__name__)
 CORS(app)
+
+tracemalloc.start()
 
 @app.route('/', methods=['POST'])
 def predictions_and_offensiveness():
@@ -30,3 +33,11 @@ def verify_online():
 if __name__ == '__main__':
     port = int(os.environ.get('PORT'))
     app.run(debug=True, port=port)
+    
+    snapshot = tracemalloc.take_snapshot()
+    top_stats = snapshot.statistics('lineno')
+
+    print("[ Top 10 ]")
+    for stat in top_stats[:10]:
+        print(stat)
+
