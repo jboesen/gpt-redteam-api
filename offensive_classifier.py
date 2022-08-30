@@ -38,18 +38,19 @@ async def get_sentence_offensiveness(sentence, client):
 
 async def get_all_offensiveness(sentences):
     """Runs query for each sentence, returning probability of offensiveness"""
-    async with httpx.AsyncClient() as client:
-        results = await asyncio.gather(
-            *map(get_sentence_offensiveness, sentences, itertools.repeat(client))
-        )
-    for rating in results:
-        if 'error' in rating\
-             and rating['error'] == 'Rate limit reached. Please log in or use your apiToken':
-            return [rating]
-    formatted_response = []
-    for i, rating in enumerate(results):
-        formatted_response.append({'sentence': sentences[i], 'offensive': rating[0][1]['score']})
-    return formatted_response
+#     async with httpx.AsyncClient() as client:
+#         results = await asyncio.gather(
+#             *map(get_sentence_offensiveness, sentences, itertools.repeat(client))
+#         )
+#     for rating in results:
+#         if 'error' in rating\
+#              and rating['error'] == 'Rate limit reached. Please log in or use your apiToken':
+#             return [rating]
+#     formatted_response = []
+#     for i, rating in enumerate(results):
+#         formatted_response.append({'sentence': sentences[i], 'offensive': rating[0][1]['score']})
+#     return formatted_response
+      return [{'sentence': 'Hello meeper', 'offensive': .77 }]
 
 def sort_offensive(predictions_arr):
     """Rates and sorts offensiveness where key sentence and value is offensiveness"""
