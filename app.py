@@ -1,4 +1,5 @@
 """Contains all API methods"""
+import os
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from generate_text import get_aggregated_completions
@@ -27,4 +28,5 @@ def verify_online():
     return jsonify({"success": True})
 
 if __name__ == '__main__':
-    app.run()
+    port = int(os.environ.get('PORT'))
+    app.run(debug=True, port=port)
