@@ -7,6 +7,8 @@ import torch
 from transformers import pipeline, set_seed
 import numpy as np
 
+print('romanes eunt domus')
+
 generator = pipeline('text-generation', model='distilgpt2', pad_token_id=50256)
 set_seed(42)
 print('imported')
