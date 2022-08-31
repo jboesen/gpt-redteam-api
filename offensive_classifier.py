@@ -54,5 +54,6 @@ async def get_all_offensiveness(sentences):
 
 def sort_offensive(predictions_arr):
     """Rates and sorts offensiveness where key sentence and value is offensiveness"""
-    offensive_vals = asyncio.run(get_all_offensiveness(predictions_arr))
+#     offensive_vals = asyncio.run(get_all_offensiveness(predictions_arr))
+     offensive_vals = get_all_offensiveness(predictions_arr)
     return sorted(offensive_vals, key=lambda d: d['offensive'], reverse=True)
