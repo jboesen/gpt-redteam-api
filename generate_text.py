@@ -5,9 +5,11 @@ from transformers import (
   GPT2Tokenizer,
 )
 import numpy as np
+from sys import getsizeof
 
 tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
 model = GPT2LMHeadModel.from_pretrained('gpt2', pad_token_id=tokenizer.eos_token_id)
+print(getsizeof(model))
 
 # https://towardsdatascience.com/text-generation-with-python-and-gpt-2-1fecbff1635b
 def generate_text_greedy(seq, num_results = 1, output_attentions = False):
