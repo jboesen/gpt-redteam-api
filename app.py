@@ -8,8 +8,6 @@ from offensive_classifier import sort_offensive
 app = Flask(__name__)
 CORS(app)
 
-print('inmain')
-
 @app.route('/', methods=['POST'])
 def predictions_and_offensiveness():
     """Sorts predictions by offensiveness for redteaming"""
