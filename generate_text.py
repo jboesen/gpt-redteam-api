@@ -6,8 +6,8 @@ from transformers import (
 )
 import numpy as np
 
-tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
-model = GPT2LMHeadModel.from_pretrained('gpt2', pad_token_id=tokenizer.eos_token_id)
+tokenizer = GPT2Tokenizer.from_pretrained('distilgpt2')
+model = GPT2LMHeadModel.from_pretrained('distilgpt2', pad_token_id=tokenizer.eos_token_id)
 
 # https://towardsdatascience.com/text-generation-with-python-and-gpt-2-1fecbff1635b
 def generate_text_greedy(seq, num_results = 1, output_attentions = False):
