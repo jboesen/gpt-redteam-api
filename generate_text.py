@@ -1,18 +1,13 @@
 """Generate text predictions and attention values with GPT2"""
 import torch
-# from transformers import (
-#   GPT2LMHeadModel,
-#   GPT2Tokenizer,
-# )
-from transformers import pipeline, set_seed
+from transformers import (
+  GPT2LMHeadModel,
+  GPT2Tokenizer,
+)
 import numpy as np
 
-print('romanes eunt domus')
-
-generator = pipeline('text-generation', model='distilgpt2', pad_token_id=50256)
-print('imported')
-set_seed(42)
-print('imported')
+tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
+model = GPT2LMHeadModel.from_pretrained('gpt2', pad_token_id=tokenizer.eos_token_id)
 
 # https://towardsdatascience.com/text-generation-with-python-and-gpt-2-1fecbff1635b
 def generate_text_greedy(seq, num_results = 1, output_attentions = False):
